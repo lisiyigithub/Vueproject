@@ -14,6 +14,9 @@
     </mt-swipe>
     <div>
       <p>热门推荐</p>
+      <ul>
+      	<li>我爱你</li>
+      </ul>
     </div>
   </div>
 </template>
