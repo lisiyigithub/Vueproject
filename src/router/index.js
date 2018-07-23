@@ -4,6 +4,7 @@ import Main from '../views/main.vue'
 import Home from '../views/home.vue'
 import About from '../views/about.vue'
 import Mine from '../views/mine.vue'
+import Detail from '../views/detail.vue'
 
 
 Vue.use(Router)
@@ -31,6 +32,10 @@ export default new Router({
     {
       path:'/',
       redirect:'/home'
+    },
+    {
+      path:'/detail',
+      component:Detail
     }
   ]
 })
