@@ -1,77 +1,112 @@
 <template>
     <div id="detail">
         <header>
-            <span style="text-align:left;"><——</span>
-            <span style="color:#000;weight:900;">恒易贷</span>
-            <span class="iconfont icon-wujiaoxingkong" style="text-align:right;"></span>
+           <router-link to="/about" tag="span" style="text-align:left;margin-left:10px;"> <</router-link>
+            <span style="color:#000;weight:900;">{{str.tit}}</span>
+            <span class="iconfont icon-wujiaoxingkong" style="text-align:right;margin-right:10px;"></span>
         </header>
         <div class="title">
-            <img src="" alt="">
-            <p>成功率：<span>2502773人已放款</span></p>
-            <p>超低利率，无抵押信用贷款，1分钟申请</p>
+            <img src="static/tubiao3.jpg" alt="">
+            <p>成功率：<span>{{str.num}}人已放款</span></p>
+            <p>{{str.mes}}</p>
         </div>
         <div class="center">
             <div class="center-first">
                 <div>
-                    <span>借款金额（0.3-5...</span>
-                    <b>3000></b>
+                    <span><b class="iconfont icon-chongzhi"></b>借款金额({{str.jine}})</span>
+                    <p>{{str.shuju}}></p>
                 </div>
                 <div >
-                    <span>分期期限（1-36月）</span>
-                    <b>1></b>
+                    <span><b class="iconfont icon-tixian"></b>分期期限({{str.qixian}})</span>
+                    <p>{{str.fenqi}}></p>
                 </div>
             </div>
             <div class="center-second">
-                <div><span><b>3021.90</b>每月还款</span></div>
-                <div><span><b>0.73%</b>参考月利率</span></div>
-                <div><span><b>24小时内</b>最快放款时间</span></div>
+                <div><span><b>{{str.yuegong}}</b>每月还款</span></div>
+                <i></i>
+                <div><span><b>{{str.lv}}%</b>参考月利率</span></div>
+                <i></i>
+                <div><span><b>{{str.hour}}小时内</b>最快放款时间</span></div>
             </div>
         </div>
         <div class="bottom">
             <div>
-                <h4>|申请资格</h4>
-                年龄要求：
+                <h4><i></i>申请资格</h4>
+                年龄要求：{{str.age}}
             </div>
-            <div>
-                <h4>|产品介绍</h4>
-                借款用途：
-            </div>
+        </div>
+        <div class="footer">
+            <router-link :to="'/jiekuan/'+str.id" tag="div">申请借款</router-link>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    name:'Detail'
+    name:'Detail',
+    data(){
+        return{
+            str:''
+        }
+    },
+    mounted(){
+        var _this = this;
+        axios('http://localhost:3000/detail',{
+            method:'post',				
+            headers:{
+                'Content-type': 'application/x-www-form-urlencoded'
+            },
+            params:{
+                id:_this.$route.params.id
+            }
+        }).then(function(data){
+            
+            _this.str = (data.data)[0];
+            console.log(_this.str)
+            // console.log(_this.str[0].xmm)
+        })	
+    }
 }
 </script>
 
 <style scoped="">
+#detail{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 header{
-    padding: 0 10px;
     height: 44px;
     background: #Fff;
     border-bottom: 1px solid #267aeb;
+    position: fixed;
+    top: 0;
+    width:100%;
 }
 header span{
     float:left;
-    width: 33.3%;
+    width: 31%;
     text-align: center;
     line-height: 44px;
     color: #267aeb;
 }
 .title{
-    padding: 10px 15px 20px;
+    padding: 10px 10px 20px;
     font-size: 12px;
+    margin: 54px 10px 10px;
     height: 50px;
+    background:#fff;
+    border-radius: 4px;
 }
 .title img{
     float:left;
     width: 20%;
     height: 100%;
+    margin-right:10px;
 }
 .title p{
-    width:80%;
+    width:76%;
     float:left;
     line-height: 22px;
 }
@@ -85,13 +120,23 @@ header span{
 }
 .center-first{
     height:70px;
-    padding:20px 15px 15px;
+    padding:20px 8px 15px;
 }
 .center-first>div{
     width: 50%;
     float:left;
     font-size: 14px;
     text-align: center;
+    line-height:30px;
+}
+.center-first>div b{
+    font-size: 12px;
+    color:#267aeb;
+    margin-right:4px;
+}
+.center-first>div p{
+    font-size: 22px;
+    font-weight: 900;
 }
 .center-second{
     height: 70px;
@@ -102,17 +147,54 @@ header span{
     text-align: center;
 }
 .center-second>div{
-    width: 33.33%;
+    width: 33%;
     padding: 15px 0;
     float: left;
     line-height: 20px;
+    font-size: 12px;
 }
 .center-second>div span b{
     display: block;
+    font-weight: 100;
+    font-size: 14px;
+}
+.center-second i{
+    float:left;
+    width: 1px;
+    background: #fff;
+    height: 28px;
+    margin-top: 20px;
 }
 .bottom{
     background: #fff;
     margin-top: 10px;
+    padding: 0 10px;
+    font-size: 12px;  
+    flex:1;
+    margin-bottom:40px;
+}
+.bottom h4{
+    line-height: 50px;
+    font-size: 14px;
+}
+.bottom h4 i{
+    float: left;
+    width: 2px;
+    height: 12px;
+    background: #267aeb;
+    border-radius: 1px;
+    margin:19px 5px 0 0;
+}
+.footer{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #267aeb;
+    color:#fff;
+    position: fixed;
+    bottom:0;
+    width:100%;
+    font-size: 14px;
 }
 </style>
 

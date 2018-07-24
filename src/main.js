@@ -6,6 +6,7 @@ import router from './router'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './icon/iconfont.css'//引入后才能使用iconfont的类名
+import store from './store/store'
 
 Vue.use(MintUI);
 Vue.config.productionTip = false

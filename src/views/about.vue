@@ -1,76 +1,81 @@
 <template>
   <div id="about">
       <header>
-        <span>资金不限</span>
+        <span><b class="iconfont icon-chongzhi"></b>资金不限</span>
         <b>|</b>
-        <span>类型不限</span>
+        <span><b class="iconfont icon-sifour86"></b>类型不限</span>
       </header>
       <mt-navbar v-model="selected" style="border-bottom:1px solid #ddd;position:fixed;top:44px;width:100%;">
         <mt-tab-item id="1">综合排序</mt-tab-item>
-        <mt-tab-item id="2">通过率高</mt-tab-item>
+        <mt-tab-item id="2" @click="tong()">通过率高</mt-tab-item>
         <mt-tab-item id="3">下款最快</mt-tab-item>
         <mt-tab-item id="4">利率最低</mt-tab-item>
       </mt-navbar> 
+      <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个 </p>         
           <!-- 综合排序 -->
       <mt-tab-container v-model="selected" style="position:static;">       
-        <mt-tab-container-item id="1">
-          <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个 </p>
+        <mt-tab-container-item id="1">        
           <div v-for="(item,i) in arr" class="wai">
-            <div class="inn-wap">  
-              <img src="" alt="">
-             <div class="inn">     
-                <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                <p>可贷金额<span>{{item.money}}万元</span></p>
-                <p>最快下款<span>{{item.hour}}小时</span>|参考月利率<span>{{item.lv}}%</span></p>
-              </div>  
-            </div>
-            <p>{{item.mes}}</p>           
-          </div>
+            <router-link :to="'/detail/'+item.id" tag="div">
+              <div class="inn-wap">  
+                <img src="static/tubiao2.jpg"/>
+              <div class="inn">     
+                  <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
+                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
+                </div>  
+              </div>
+              <p>{{item.mes}}</p>  
+            </router-link>         
+          </div>         
         </mt-tab-container-item>
-        <!-- 通过率高 -->
+        <!-- 通过率高 -->    
         <mt-tab-container-item id="2">
-          <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个 </p>
           <div v-for="(item,i) in arr" class="wai">
-            <div class="inn-wap">  
-              <img src="" alt="">
-             <div class="inn">     
-                <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                <p>可贷金额<span>{{item.money}}万元</span></p>
-                <p>最快下款<span>{{item.hour}}小时</span>|参考月利率<span>{{item.lv}}%</span></p>
-              </div>  
-            </div>
-            <p>{{item.mes}}</p>           
-          </div>
+            <router-link :to="/detail/+item.id" tag="div">
+              <div class="inn-wap">  
+                <img src="static/tubiao2.jpg"/>
+              <div class="inn">     
+                  <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
+                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
+                </div>  
+              </div>
+              <p>{{item.mes}}</p>  
+            </router-link>         
+          </div>         
         </mt-tab-container-item>
-        <!-- 下款最快 -->
-        <mt-tab-container-item id="3">
-         <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个 </p>
+        <!-- 下款最快 -->      
+        <mt-tab-container-item id="3">        
           <div v-for="(item,i) in arr" class="wai">
-            <div class="inn-wap">  
-              <img src="" alt="">
-             <div class="inn">     
-                <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                <p>可贷金额<span>{{item.money}}万元</span></p>
-                <p>最快下款<span>{{item.hour}}小时</span>|参考月利率<span>{{item.lv}}%</span></p>
-              </div>  
-            </div>
-            <p>{{item.mes}}</p>            
-          </div>
+            <router-link :to="/detail/+item.id" tag="div">
+              <div class="inn-wap">  
+                <img src="static/tubiao2.jpg"/>
+              <div class="inn">     
+                  <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
+                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
+                </div>  
+              </div>
+              <p>{{item.mes}}</p>  
+            </router-link>         
+          </div>         
         </mt-tab-container-item>
-        <!-- 利率最低 -->
-        <mt-tab-container-item id="4">
-          <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个 </p>
+        <!-- 利率最低 -->     
+        <mt-tab-container-item id="4"> 
           <div v-for="(item,i) in arr" class="wai">
-            <div class="inn-wap">  
-              <img src="" alt="">
-             <div class="inn">     
-                <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                <p>可贷金额<span>{{item.money}}万元</span></p>
-                <p>最快下款<span>{{item.hour}}小时</span>|参考月利率<span>{{item.lv}}%</span></p>
-              </div>  
-            </div>
-            <p>{{item.mes}}</p>          
-          </div>
+            <router-link :to="/detail/+item.id" tag="div">
+              <div class="inn-wap">  
+                <img src="static/tubiao2.jpg"/>
+	              <div class="inn">     
+                  <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
+                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
+	              </div>   
+              </div>
+              <p>{{item.mes}}</p>  
+            </router-link>         
+          </div>         
         </mt-tab-container-item>
       </mt-tab-container>
   </div>
@@ -83,7 +88,8 @@ export default {
   data(){
     return{
       selected:'1',
-      arr:[]
+      arr:[],
+      str:[]
     }
   },
   mounted(){
@@ -97,10 +103,24 @@ export default {
         
       }
     }).then(function(data){
-      console.log(data.data)
       _this.arr = data.data;
     })	
   }
+  // methods:{
+  //   tong(){
+  //     axios('http://localhost:3000/tong',{
+  //     method:'post',				
+  //     headers:{
+  //       'Content-type': 'application/x-www-form-urlencoded'
+  //     },
+  //     params:{
+        
+  //     }
+  //   }).then(function(data){
+  //     this.str = data.data;
+  //   })	
+  //   }
+  // }
 }
 </script>
 
@@ -116,9 +136,13 @@ header span{
   width: 49%;
   text-align: center;
 }
-header b{
+header>b{
   float:left;
   color: #ddd;
+}
+header span b{
+  margin-right:5px;
+  color:#267aeb;
 }
 .wai{
   background:#fff;
@@ -127,8 +151,10 @@ header b{
   font-size: 12px;
   
 }
-.wai>p{
-  padding: 10px 0;
+.wai>div>p{
+	padding: 10px 0;
+}
+.wai>div p{
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
@@ -137,9 +163,10 @@ header b{
   border-bottom:1px solid #ddd;
 }
 .inn-wap img{
-  width:20%;
-  height:86px;
+  width:18%;
+  height:60px;
   float:left; 
+  margin: 10px 0 0 10px;
 }
 .inn{
   line-height: 20px;

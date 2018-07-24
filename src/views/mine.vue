@@ -4,7 +4,7 @@
         <i class="iconfont icon-xiaoxi"></i>
         <div class="first">
           <img src="static/login.jpg" alt="">
-          <span @click="login()">立即登录</span>
+          <span @click="login()">{{name}}</span>
         </div>
         <div class="second">
           <div><span class="iconfont icon-shoucang"></span>收藏</div>
@@ -14,8 +14,12 @@
       </div>
       <div class="conn">
         <ul>
-          <li><span class="iconfont icon-shenghuoxinyongqiahuankuan"></span>我要还款<b>></b></li>
-          <li><span class="iconfont icon-touzi-"></span>我的借款<b>></b></li>
+          <li><span class="iconfont icon-shenghuoxinyongqiahuankuan"></span>我要还款
+            <router-link to="/huan" tag="b">></router-link>
+          </li>
+          <li><span class="iconfont icon-touzi-"></span>我的借款
+            <router-link to="/jie" tag="b">></router-link>
+          </li>
           <li><span class="iconfont icon-zhong"></span>还款提醒<b>></b></li>
           <li style="margin-bottom:10px;border-bottom:none;"><span class="iconfont icon-jishiben"></span>个人资料<b>></b></li>
           <li><span class="iconfont icon-ren"></span>邀请好友<b>></b></li>
@@ -27,11 +31,22 @@
 </template>
 
 <script>
+import store from '../store/store'
+import axios from 'axios'
 export default {
   name: 'Mine',
+  data(){
+    return{
+    }
+  },
   methods:{
     login(){
       this.$router.push('/')
+    }
+  },
+  computed:{
+    name(){
+      return store.state.name
     }
   }
 }

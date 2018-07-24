@@ -19,23 +19,23 @@
     <div class="wrap">
       <div class="hot">
         <p>热门推荐</p>
-        <div style="border:1px solid #d93509"><router-link to="/" tag="span">2000以下</router-link></div>       
-        <div style="border:1px solid #f06e06"><router-link to="/" tag="span">2000-5000</router-link></div>
-        <div style="border:1px solid #70a9f5"><router-link to="/" tag="span">5000-10000</router-link></div>
-        <div style="border:1px solid #4cda8f"><router-link to="/" tag="span">10000以上</router-link></div>
+        <div style="border:1px solid #d93509"><router-link to="/about" tag="span">2000以下</router-link></div>       
+        <div style="border:1px solid #f06e06"><router-link to="/about" tag="span">2000-5000</router-link></div>
+        <div style="border:1px solid #70a9f5"><router-link to="/about" tag="span">5000-10000</router-link></div>
+        <div style="border:1px solid #4cda8f"><router-link to="/about" tag="span">10000以上</router-link></div>
       </div>
     </div>
     <div class="jiekuan">
-      <p>热门借款</p>
-      <router-link to="/detail" tag="div">
-        <dl v-for="(item,i) in tui">
-          <dt><img src="static/tubiao1.jpg" alt=""></dt>
-          <dd>
-            <h4>{{item.tit}}<span>{{item.num}}人已放贷</span></h4>         
-            <p>{{item.con}}</p>
-          </dd>
-        </dl>
-      </router-link>
+      <p>热门借款</p>      
+      <dl v-for="(item,i) in tui">
+        <router-link :to="'/detail/'+item.id" tag="div">
+        <dt><img src="static/tubiao1.jpg" alt=""></dt>
+        <dd>
+          <h4>{{item.tit}}<span>{{item.num}}人已放贷</span></h4>         
+          <p>{{item.mes}}</p>
+        </dd>
+        </router-link>
+      </dl>    
     </div>
     <div class="last">
       <button @click="mess()">查看更多借款信息</button>
@@ -45,6 +45,8 @@
 
 <script>
 import axios from 'axios'
+import $ from 'jquery'
+
 export default {
   name: 'Home',
   data(){
@@ -56,9 +58,7 @@ export default {
     }
   },
   methods:{
-    mess(){
-      this.$router.push('/about')
-    }
+    
   },
   mounted(){
     var _this = this;
@@ -71,7 +71,6 @@ export default {
         
       }
     }).then(function(data){
-      console.log(data.data)
       _this.tui = data.data;
     })	
   }
@@ -79,11 +78,11 @@ export default {
 </script>
 
 <style scoped="">
-#home{
+/* #home{
   margin-top: 44px;
-}
+} */
 header{
-  background:#267aeb;
+  background:0;
   z-index:999; 
 }
 header select{

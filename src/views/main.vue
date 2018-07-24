@@ -26,7 +26,7 @@ export default {
 section{
     flex: 1;
     overflow: auto;
-    margin-bottom:64px;
+    margin-bottom:54px;
 }
 header,footer{
     height: 44px;
