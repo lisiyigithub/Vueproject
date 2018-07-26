@@ -17,7 +17,7 @@
                     <p>{{str.shuju}}></p>
                 </div>
                 <div >
-                    <span><b class="iconfont icon-tixian"></b>分期期限({{str.qixian}})</span>
+                    <span><b class="iconfont icon-tixian"></b>分期期限({{str.qixian}}月)</span>
                     <p>{{str.fenqi}}></p>
                 </div>
             </div>
@@ -63,7 +63,7 @@ export default {
         }).then(function(data){
             
             _this.str = (data.data)[0];
-            console.log(_this.str)
+//          console.log(_this.str)
             // console.log(_this.str[0].xmm)
         })	
     }

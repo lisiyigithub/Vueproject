@@ -11,9 +11,9 @@
     </header>
     <div>
       <mt-swipe :auto="2000" style="height:180px;">
-         <mt-swipe-item style="background:red;">1</mt-swipe-item>
-        <mt-swipe-item style="background:yellow;">2</mt-swipe-item>
-        <mt-swipe-item style="background:pink;">3</mt-swipe-item>
+         <mt-swipe-item><img style="width:100%;height:100%;" src="//static.rong360.com/upload/jpg/a9/09/a9094c4572195e8eefc8dae928630ef7.jpg"/></mt-swipe-item>
+        <mt-swipe-item><img style="width:100%;height:100%;" src="https://static.rong360.com/upload/jpg/39/88/3988297254eed99ae695653e40e449bd.jpg"/></mt-swipe-item>
+        <mt-swipe-item><img style="width:100%;height:100%;" src="https:////static.rong360.com/upload/jpg/83/e6/83e6bfdf4fdd3c6a54fa44c8654a4014.jpg"/></mt-swipe-item>
       </mt-swipe>
     </div>
     <div class="wrap">
@@ -58,7 +58,9 @@ export default {
     }
   },
   methods:{
-    
+  	mess(){
+  		this.$router.push('/about')
+  	}
   },
   mounted(){
     var _this = this;
@@ -78,16 +80,16 @@ export default {
 </script>
 
 <style scoped="">
-/* #home{
+ #home{
   margin-top: 44px;
-} */
+} 
 header{
-  background:0;
+  background:#267aeb;
   z-index:999; 
 }
 header select{
   color: #fff;
-  background: none;
+  background:none;
   border: none;
   outline: none;
   float: left;

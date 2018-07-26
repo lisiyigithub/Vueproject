@@ -29,23 +29,27 @@ export default {
     data(){
         return{
             user:'',
-            pass:''
+            pass:'',
+            str:''
         }
     },
     methods:{
-        login(){
+        login(){       	
             if(this.user == ''){
-                Toast({
+            	alert('手机号不能为空')
+                /*Toast({
                     message:'贷款王：手机号不能为空',
                     position:'bottom',
                     duration:3000
-                })
+                })*/
             }else if(this.pass == ''){
-                Toast({
+            	alert('密码不能为空')
+            	
+                /*Toast({
                     message:'贷款王：密码不能为空',
                     position:'bottom',
                     duration:3000
-                })
+                })*/
             }else{
                 var _this = this;
                 console.log(_this.user)
@@ -62,9 +66,11 @@ export default {
                 }).then(function(data){
                     console.log(data.data)
                     if(data.data == 2){
+        				store.commit('shuju',_this.user)
+        				store.commit('isLogin',_this.str=true)
+        				
                         // alert('登录成功')
-                        store.commit('shuju',_this.user)
-                        location.href='#/home'
+                        location.href='#/mine'
                     }else{
                         alert('用户名或密码错误')
                         location.href='#/login'

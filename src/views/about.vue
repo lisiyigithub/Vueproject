@@ -11,7 +11,7 @@
         <mt-tab-item id="3">下款最快</mt-tab-item>
         <mt-tab-item id="4">利率最低</mt-tab-item>
       </mt-navbar> 
-      <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个 </p>         
+      <p style="line-height:30px;font-size:14px;">共{{arr.length}}个借款产品，已为你准备推荐{{arr.length}}个,所有产品都限贷一次 </p>         
           <!-- 综合排序 -->
       <mt-tab-container v-model="selected" style="position:static;">       
         <mt-tab-container-item id="1">        
@@ -21,7 +21,7 @@
                 <img src="static/tubiao2.jpg"/>
               <div class="inn">     
                   <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>可贷金额<span>{{item.money}}元</span></p>
                   <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
                 </div>  
               </div>
@@ -37,7 +37,7 @@
                 <img src="static/tubiao2.jpg"/>
               <div class="inn">     
                   <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>可贷金额<span>{{item.money}}元</span></p>
                   <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
                 </div>  
               </div>
@@ -53,7 +53,7 @@
                 <img src="static/tubiao2.jpg"/>
               <div class="inn">     
                   <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>可贷金额<span>{{item.money}}元</span></p>
                   <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
                 </div>  
               </div>
@@ -69,7 +69,7 @@
                 <img src="static/tubiao2.jpg"/>
 	              <div class="inn">     
                   <h4>{{item.tit}}<span style="color:#ababab;float:right;">{{item.num}}人已放款</span></h4> 
-                  <p>可贷金额<span>{{item.money}}万元</span></p>
+                  <p>可贷金额<span>{{item.money}}元</span></p>
                   <p>最快下款<span>{{item.hour}}小时</span>|　参考月利率<span>{{item.lv}}%</span></p>
 	              </div>   
               </div>

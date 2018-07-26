@@ -41,36 +41,44 @@ export default {
             var res = /^[1]\d{10}$/;
             var rew = /^[a-zA-Z_]\w{5,13}$/;
             if(this.user == ""){
-                // alert('手机号不能为空')
-                Toast({
-                    message:'贷款王：手机号不能为空',
-                    position:'bottom',
-                    duration:3000
-                })
+                alert('手机号不能为空')
+//              Toast({
+//                  message:'贷款王：手机号不能为空',
+//                  position:'bottom',
+//                  duration:3000
+//              })
             }else if(this.sjyzm == ""){
-                Toast({
-                    message:'贷款王：验证码不能为空',
-                    position:'bottom',
-                    duration:3000
-                })
+                alert('验证码不能为空')
+            	
+//              Toast({
+//                  message:'贷款王：验证码不能为空',
+//                  position:'bottom',
+//                  duration:3000
+//              })
             }else if(this.pass == ""){
-                Toast({
+                alert('密码不能为空')
+            	
+               /* Toast({
                     message:'贷款王：密码不能为空',
                     position:'bottom',
                     duration:3000
-                })
+                })*/
             }else if(res.test(this.user) == false){
-                Toast({
+                alert('请输入正确的手机号')
+            	
+                /*Toast({
                     message:'贷款王：请输入正确的手机号',
                     position:'bottom',
                     duration:3000
-                })
+                })*/
             }else if(rew.test(this.pass) == false){
-                Toast({
+                alert('请按照格式填写密码')
+            	
+                /*Toast({
                     message:'贷款王：请按照格式填写密码',
                     position:'bottom',
                     duration:3000
-                })
+                })*/
             }else{
                 var _this = this;
                 axios('http://localhost:3000/register',{

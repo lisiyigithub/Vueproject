@@ -9,12 +9,18 @@ Vue.use(Vuex)
 
 var store = new Vuex.Store({
 	state:{
-		name:''
+		user:Boolean(localStorage.getItem('isLogin'))?localStorage.getItem('user'):'',
+		isLogin:Boolean(localStorage.getItem('isLogin'))?localStorage.getItem('isLogin'):false
+//		isLogin:false
 	},
 	mutations:{
 		shuju(a,b){
-			a.name = b;
-			console.log(b)
+			a.user = b;
+			localStorage.setItem('user',b)
+		},
+		isLogin(a,b){
+			a.isLogin = b;
+			localStorage.setItem('isLogin',b)
 		}
 	}
 })

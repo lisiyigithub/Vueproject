@@ -5,6 +5,7 @@
                 <p>借款项目:{{item.tit}}</p>
                 <p>借款金额:{{item.money}}</p>
                 <p>还款期限:{{item.qixian}}个月</p>
+                <p>还款利率：{{item.lv}}</p>
             </li>
         </ul>
     </div>

@@ -3,8 +3,9 @@
 		<header><router-link to="/about" tag="span">X</router-link>我要借款</header>
 		<div class="top">
 			<h4>借款项目：{{str.tit}}</h4>
-			<p>借款范围：{{str.money}}</p>
-			<p>还款期限：{{str.qixian}}</p>
+			<p>借款范围：{{str.money}}元</p>
+			<p>还款期限：{{str.qixian}}月</p>
+			<p>贷款利率：{{str.lv}}</p>			
 			<input type="text" v-model='ipt1' placeholder="还款期限(月)"/>
 			<input type="" v-model='ipt' placeholder="填入借款金额"/>
 			<button @click="que()">确定</button>
@@ -13,35 +14,68 @@
 </template>
 
 <script>
-	import axios from 'axios'
+import store from '../store/store'
+import axios from 'axios'
 export default{
 	name:'Jiekuan',
 	data(){
 		return{
 			ipt1:'',
 			ipt:'',
-			str:''
+			str:'',
+			ipt2:'',
+			arr:[],
+			arr1:[],
+			arr2:[]
 		}
 	},
-	methods:{
-		que(){
-			console.log(this.ipt)
-			var _this = this;
-			axios('http://localhost:3000/jiekuan',{
-				method:'post',				
-	            headers:{
-	                'Content-type': 'application/x-www-form-urlencoded'
-	            },
-	            params:{
-	                id:_this.$route.params.id,
-	                tit:this.str.tit,
-	                money:this.ipt,
-	                qixian:this.ipt1
-	            }
-			})
-			alert('借款成功')
-			location.href='#/about'
-			this.ipt=''
+	methods:{		
+		que(){	
+			this.arr = this.str.qixian.split('-')
+//			console.log(this.arr)
+			this.arr1 = this.str.money.split('-')
+//			this.arr2 = this.str.lv.split('%')[0];
+			
+			console.log(Number(this.arr2))
+//			console.log(this.arr1)
+			if(Number(this.ipt)<Number(this.arr1[0])){
+				alert('请参考最低贷款额度贷款')
+			}else if(Number(this.ipt)>Number(this.arr1[1])){
+				console.log(typeof Number(this.arr1[1]))
+				alert('您已超过了最大贷款额度')
+			}else if(Number(this.ipt1)<Number(this.arr[0])){
+				alert('请选择合理还款期限')
+			}else if(Number(this.ipt1)>Number(this.arr[1])){
+//				console.log(this.arr[1])
+				alert('不能超出借款期限')
+			}else if(this.ipt2.length>14){
+				alert('请输入规定的银行卡号')
+			}else{
+				console.log(this.ipt)
+				var _this = this;
+				axios('http://localhost:3000/jiekuan',{
+					method:'post',				
+		            headers:{
+		                'Content-type': 'application/x-www-form-urlencoded'
+		            },
+		            params:{
+		                id:_this.$route.params.id,
+		                tit:this.str.tit,
+		                money:this.ipt,
+		                qixian:this.ipt1,
+		                lv:this.str.lv,
+		                user:_this.$store.state.user
+		            }
+				}).then(function(data){
+					if(data.data==1){
+						alert('此项目只限贷款一次')
+						location.href="#/about"
+					}else{
+						alert('借款成功')
+						location.href='#/about'
+					}
+				})				
+			}
 		}
 	},
 	mounted(){
@@ -57,7 +91,7 @@ export default{
         }).then(function(data){
             
             _this.str = (data.data)[0];
-            console.log(_this.str)
+//          console.log(_this.str)
             // console.log(_this.str[0].xmm)
         })	
 	}
